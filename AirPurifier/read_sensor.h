@@ -57,14 +57,14 @@ void cal_dust_density(){
     dustValue=0;
   }
 
-  Serial.println("Raw Signal Value (0-1023):");
-  Serial.println(voMeasured);
-
-  Serial.println("Voltage:");
-  Serial.println(Vo);
-
-  Serial.println("Dust Density:");
-  Serial.println(dustValue);
+//  Serial.println("Raw Signal Value (0-1023):");
+//  Serial.println(voMeasured);
+//
+//  Serial.println("Voltage:");
+//  Serial.println(Vo);
+//
+//  Serial.println("Dust Density:");
+//  Serial.println(dustValue);
 
 }
 void read_dust_sensor() {
@@ -73,9 +73,9 @@ void read_dust_sensor() {
   delayMicroseconds(samplingTime);
   int analog_input=average_16(analogRead(measurePin));
   float std_value=standard_deviation(analog_input);
-  
-  Serial.println("Standard Deviation:");
-  Serial.println(std_value);
+//  
+//  Serial.println("Standard Deviation:");
+//  Serial.println(std_value);
   
   if(analog_input>=voMeasured+(std_value)||analog_input<=voMeasured-(std_value)){
   voMeasured = analog_input;

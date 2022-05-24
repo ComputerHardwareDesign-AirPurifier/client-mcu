@@ -19,9 +19,9 @@ void air_controller() {
   if(fanLevel!=prevFanLevel){
     prevFanLevel=fanLevel;
     if(fanLevel==0){
-      Serial.println(fanLevel);
+      Serial2.write(fanLevel);
     }else{
-      Serial.println(50+((fanLevel-1)*25));
+      Serial2.write(50+((fanLevel-1)*25));
     }
   }
 }
