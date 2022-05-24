@@ -6,4 +6,6 @@ uint8_t isAutoShutdown = 0;
 uint16_t timeShutdown = 60;
 
 float dustValue = 0;
+float tempValue = 0;
+float humidityValue = 0;
 uint8_t prevFanLevel = 1;
