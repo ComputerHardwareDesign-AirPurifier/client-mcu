@@ -12,9 +12,9 @@ void createArray(const char *filename);
 //====================================================================================
 void drawJpeg(const char *filename, int xpos, int ypos) {
 
-  Serial.println("===========================");
-  Serial.print("Drawing file: "); Serial.println(filename);
-  Serial.println("===========================");
+//  Serial.println("===========================");
+//  Serial.print("Drawing file: "); Serial.println(filename);
+//  Serial.println("===========================");
   // Open the named file (the Jpeg decoder library will close it after rendering image)
   fs::File jpegFile = SPIFFS.open( filename, "r");    // File handle reference for SPIFFS
   //  File jpegFile = SD.open( filename, FILE_READ);  // or, file handle reference for SD library
@@ -33,7 +33,7 @@ void drawJpeg(const char *filename, int xpos, int ypos) {
 
   if (decoded) {
     // print information about the image to the serial port
-    jpegInfo();
+    //jpegInfo();
 
     // render the image onto the screen at given coordinates
     jpegRender(xpos, ypos);
@@ -115,8 +115,8 @@ void jpegRender(int xpos, int ypos) {
   drawTime = millis() - drawTime; // Calculate the time it took
 
   // print the results to the serial port
-  Serial.print  ("Total render time was    : "); Serial.print(drawTime); Serial.println(" ms");
-  Serial.println("=====================================");
+//  Serial.print  ("Total render time was    : "); Serial.print(drawTime); Serial.println(" ms");
+//  Serial.println("=====================================");
 
 }
 
