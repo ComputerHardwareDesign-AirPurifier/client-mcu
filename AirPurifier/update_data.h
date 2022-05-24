@@ -10,20 +10,20 @@ void data_update() {
   if (isSettingUpdated==0 && millis()-prevTimeUpdate>delayUpdate) {
     isSettingUpdated=1;
     prevTimeUpdate = millis();
-    Serial.println("-------------------update data----------------------");
-    Serial.print("isOn: ");
-    Serial.println(isOn);
-    Serial.print("fanLevel: ");
-    Serial.println(fanLevel);
-    Serial.print("fanMode: ");
-    Serial.println(fanMode);
-    Serial.print("maxDust: ");
-    Serial.println(maxDust);
-    Serial.print("isAutoShutdown: ");
-    Serial.println(isAutoShutdown);
-    Serial.print("timeShutdown: ");
-    Serial.println(timeShutdown);
-    Serial.println();
+//    Serial.println("-------------------update data----------------------");
+//    Serial.print("isOn: ");
+//    Serial.println(isOn);
+//    Serial.print("fanLevel: ");
+//    Serial.println(fanLevel);
+//    Serial.print("fanMode: ");
+//    Serial.println(fanMode);
+//    Serial.print("maxDust: ");
+//    Serial.println(maxDust);
+//    Serial.print("isAutoShutdown: ");
+//    Serial.println(isAutoShutdown);
+//    Serial.print("timeShutdown: ");
+//    Serial.println(timeShutdown);
+//    Serial.println();
   }
 
 }

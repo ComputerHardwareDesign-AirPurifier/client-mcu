@@ -28,7 +28,6 @@ void time_count() {
         totalInterruptCounter = 0;
         timeShutdown--;
       }
-      Serial.println(totalInterruptCounter);
     } else {
       totalInterruptCounter = 0;
     }
