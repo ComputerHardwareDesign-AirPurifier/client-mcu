@@ -20,8 +20,7 @@ void SPIFFS_init() {
     Serial.println("An Error has occurred while mounting SPIFFS");
     return;
   }
-  Serial.println("\n\n----Listing files before format----");
-  listAllFiles();
+  //listAllFiles();
 }
 
 void SPIFFS_format() {
