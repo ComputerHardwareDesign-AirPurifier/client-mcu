@@ -5,6 +5,7 @@
 #include <JPEGDecoder.h>
 #include <SPI.h>
 #include <TFT_eSPI.h>      // Hardware-specific library
+#include "read_sensor.h"
 TFT_eSPI tft = TFT_eSPI(); // Invoke custom library
 /////////////////////////////
 #include "JPEG_functions.h"
@@ -243,7 +244,7 @@ void main_screen_update() {
   uint16_t dust_value_x = 89;
   uint16_t dust_value_y = 63;
   char dustData[10];
-  sprintf(dustData, "%03d", dustValue);
+  sprintf(dustData, "%03.0f", dustValue);
   tft.setTextSize(4);
   tft.setTextColor(TFT_WHITE, tft.color24to16(0x6CE278));
   tft.drawString(dustData, dust_value_x, dust_value_y);
