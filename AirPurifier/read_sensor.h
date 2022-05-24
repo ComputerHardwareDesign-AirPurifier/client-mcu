@@ -13,7 +13,7 @@ float dustValue = 0;
 float Voc = 0.6;  //Voc is 0.6 Volts for dust free acordind sensor spec
 float K = 0.5;
 int samples[16];
-float std_value=0;
+
 
 void dust_sensor_init(){
 
@@ -35,16 +35,15 @@ int average_16(int x) {
   samples[i] = x;
 
   i = (i == 15 ? 0 : i + 1);
-  
-  std_value=standard_deviation(total >> 4);
+ 
   
   return total >> 4;
 }
 
 void cal_dust_density(){
-   float Vo = voMeasured * (5.0 / 1024);
-  if(Vo>3.5){
-    Vo=3.5;
+   float Vo = voMeasured * (3.3 / 1024);
+  if(Vo>3.3){
+    Vo=3.3;
   }
   float dV = Vo - Voc;
   if (dV < 0) {
@@ -59,28 +58,28 @@ void cal_dust_density(){
     dustValue=0;
   }
 
-//  Serial.println("Raw Signal Value (0-1023):");
-//  Serial.println(voMeasured);
-//
-//  Serial.println("Voltage:");
-//  Serial.println(Vo);
-//
-//  Serial.println("Dust Density:");
-//  Serial.println(dustValue);
-//
-//    Serial.println("Standard Deviation:");
-//  Serial.println(std_value);
+  Serial.println("Raw Signal Value (0-1023):");
+  Serial.println(voMeasured);
+
+  Serial.println("Voltage:");
+  Serial.println(Vo);
+
+  Serial.println("Dust Density:");
+  Serial.println(dustValue);
+
 }
 void read_dust_sensor() {
 
   digitalWrite(ledPower,LOW);
   delayMicroseconds(samplingTime);
   int analog_input=average_16(analogRead(measurePin));
-//      Serial.println("analog_input:");
-//  Serial.println(analog_input);
-  if(analog_input>=voMeasured+(std_value/4)||analog_input<=voMeasured-(std_value/4)){
+  float std_value=standard_deviation(analog_input);
+  
+  Serial.println("Standard Deviation:");
+  Serial.println(std_value);
+  
+  if(analog_input>=voMeasured+(std_value)||analog_input<=voMeasured-(std_value)){
   voMeasured = analog_input;
-
   }
   cal_dust_density();
   delayMicroseconds(deltaTime);
