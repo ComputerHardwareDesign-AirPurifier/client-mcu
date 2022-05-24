@@ -1,4 +1,4 @@
-uint16_t dustLevel[3] = {20, 40, 60};
+float dustLevel[3] = {20.0, 40.0, 60.0};
 void air_controller() {
   if (isOn) {
     if (fanMode == 0) {
@@ -15,5 +15,13 @@ void air_controller() {
 
   } else {
     fanLevel = 0;
+  }
+  if(fanLevel!=prevFanLevel){
+    prevFanLevel=fanLevel;
+    if(fanLevel==0){
+      Serial.println(fanLevel);
+    }else{
+      Serial.println(50+((fanLevel-1)*25));
+    }
   }
 }
