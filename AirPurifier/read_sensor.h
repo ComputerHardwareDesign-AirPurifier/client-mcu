@@ -8,7 +8,6 @@ unsigned int sleepTime = 9680;
 
 float voMeasured = 0;
 float calcVoltage = 0;
-float dustValue = 0;
 
 float Voc = 0.6;  //Voc is 0.6 Volts for dust free acordind sensor spec
 float K = 0.5;

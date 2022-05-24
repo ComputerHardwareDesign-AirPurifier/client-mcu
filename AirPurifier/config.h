@@ -5,4 +5,4 @@ uint16_t maxDust = 100;
 uint8_t isAutoShutdown = 0;
 uint16_t timeShutdown = 60;
 
-uint16_t dustValue = 20;
+float dustValue = 0;

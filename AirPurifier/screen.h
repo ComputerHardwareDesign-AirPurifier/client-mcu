@@ -5,7 +5,6 @@
 #include <JPEGDecoder.h>
 #include <SPI.h>
 #include <TFT_eSPI.h>      // Hardware-specific library
-#include "read_sensor.h"
 TFT_eSPI tft = TFT_eSPI(); // Invoke custom library
 /////////////////////////////
 #include "JPEG_functions.h"
