@@ -5,6 +5,8 @@
 #include "SPIFFS_functions.h"
 #include "air_controller.h"
 #include "read_sensor.h"
+#include "dht_sensor.h"
+
 /////////////////////
 #include <HardwareSerial.h>
 #define RX2 16
@@ -22,6 +24,8 @@ void setup() {
   screen_init();
   delay(10);
   dust_sensor_init();
+  delay(10);
+  dht_init();
 }
 ///////////////////////
 
@@ -31,4 +35,5 @@ void loop() {
   time_count();
   air_controller();
   dust_sensor_controller();
+  dht_sensor();
 }

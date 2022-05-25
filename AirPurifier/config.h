@@ -7,5 +7,5 @@ uint16_t timeShutdown = 60;
 
 float dustValue = 0;
 float tempValue = 0;
-float humidityValue = 0;
+float humidValue = 0;
 uint8_t prevFanLevel = 1;

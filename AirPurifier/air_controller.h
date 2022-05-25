@@ -1,4 +1,4 @@
-float dustLevel[3] = {20.0, 40.0, 60.0};
+float dustLevel[3] = {30.0, 60.0, 90.0};
 void air_controller() {
   if (isOn) {
     if (fanMode == 0) {
@@ -16,12 +16,13 @@ void air_controller() {
   } else {
     fanLevel = 0;
   }
-  if(fanLevel!=prevFanLevel){
-    prevFanLevel=fanLevel;
-    if(fanLevel==0){
+  if (fanLevel != prevFanLevel) {
+    prevFanLevel = fanLevel;
+    if (fanLevel == 0) {
       Serial2.write(fanLevel);
-    }else{
-      Serial2.write(50+((fanLevel-1)*25));
+    } else {
+      Serial2.write(50 + ((fanLevel - 1) * 25));
     }
+    data_change();
   }
 }

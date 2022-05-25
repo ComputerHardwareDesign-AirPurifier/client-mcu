@@ -246,6 +246,18 @@ void main_screen_update() {
   tft.setTextSize(4);
   tft.setTextColor(TFT_WHITE, tft.color24to16(0x6CE278));
   tft.drawString(dustData, dust_value_x, dust_value_y);
+  /////////////
+  char tempData[10];
+  sprintf(tempData, "T: %02.02f C", tempValue);
+  tft.setTextSize(1);
+  tft.setTextColor(TFT_BLACK, tft.color24to16(0xDCD9D9));
+  tft.drawString(tempData, 10, 10);
+  /////////////
+  char humidData[10];
+  sprintf(humidData, "H: %02.02f %%", humidValue);
+  tft.setTextSize(1);
+  tft.setTextColor(TFT_BLACK, tft.color24to16(0xDCD9D9));
+  tft.drawString(humidData, 170, 10);
 }
 //////////////////
 void setting_screen_update() {
