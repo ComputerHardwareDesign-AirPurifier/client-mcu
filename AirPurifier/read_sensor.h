@@ -4,7 +4,7 @@ int ledPower = 11;
 unsigned int samplingTime = 280;
 unsigned int deltaTime = 40;
 unsigned int sleepTime = 9680;
-unsigned int sleepTimeMicros = 0;
+unsigned int sleepTimeMicros = sleepTime;
 
 
 float voMeasured = 0;
