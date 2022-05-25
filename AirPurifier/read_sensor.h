@@ -3,14 +3,15 @@ int ledPower = 11;
 
 unsigned int samplingTime = 280;
 unsigned int deltaTime = 40;
-unsigned int sleepTime = 9860;
+unsigned int sleepTime = 9680;
 unsigned int sleepTimeMicros = 0;
 
-float voMeasured = 0;
-float calcVoltage = 0;
 
-float Voc = 0.6; // Voc is 0.6 Volts for dust free acordind sensor spec
-float K = 0.5;
+float voMeasured = 0;
+//float calcVoltage = 0;
+
+//float Voc = 0.6; // Voc is 0.6 Volts for dust free acordind sensor spec
+//float K = 0.5;
 int samples[16];
 
 void dust_sensor_init()
@@ -41,20 +42,21 @@ int average_16(int x)
   return total >> 4;
 }
 
-void cal_dust_density()
-{
-  float Vo = voMeasured * (3.3 / 1024);
-  if (Vo > 3.3)
-  {
-    Vo = 3.3;
+
+void cal_dust_density() {
+  float Vo = voMeasured * (5.0 / 1024);
+  if (Vo > 3.5) {
+    Vo = 3.5;
   }
-  float dV = Vo - Voc;
-  if (dV < 0)
-  {
-    dV = 0;
-    Voc = Vo;
-  }
-  dustValue = ((dV) / K) * 100;
+
+  //  float dV = Vo - Voc;
+  //  if (dV < 0) {
+  //    dV = 0;
+  //    Voc = Vo;
+  //  }
+  //  dustValue = ((dV) / K) * 100;
+
+  dustValue = 170 * Vo - 100;
 
   if (dustValue >= 1000)
   {
@@ -65,15 +67,19 @@ void cal_dust_density()
     dustValue = 0;
   }
 
-  //  Serial.println("Raw Signal Value (0-1023):");
-  //  Serial.println(voMeasured);
-  //
-  //  Serial.println("Voltage:");
-  //  Serial.println(Vo);
-  //
-  //  Serial.println("Dust Density:");
-  //  Serial.println(dustValue);
+
+
+  Serial.println("Raw Signal Value (0-1023):");
+  Serial.println(voMeasured);
+
+  Serial.println("Voltage:");
+  Serial.println(Vo);
+
+  Serial.println("Dust Density:");
+  Serial.println(dustValue);
+
 }
+
 void read_dust_sensor()
 {
   if (micros() - sleepTimeMicros > sleepTime) {
@@ -93,6 +99,7 @@ void read_dust_sensor()
     delayMicroseconds(deltaTime);
     digitalWrite(ledPower, HIGH);
     sleepTimeMicros = micros();
+
   }
 
 }

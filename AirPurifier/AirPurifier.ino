@@ -6,13 +6,12 @@
 #include "air_controller.h"
 #include "read_sensor.h"
 #include "dht_sensor.h"
-
-/////////////////////
 #include <HardwareSerial.h>
 #define RX2 16
 #define TX2 17
-////////////////////
-void setup() {
+
+void setup()
+{
   Serial.begin(115200);
   delay(10);
   Serial2.begin(19200, SERIAL_8N1, RX2, TX2);
@@ -27,9 +26,9 @@ void setup() {
   delay(10);
   dht_init();
 }
-///////////////////////
 
-void loop() {
+void loop()
+{
   screen_controller();
   data_update();
   time_count();
