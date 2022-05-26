@@ -1,4 +1,4 @@
-float dustLevel[3] = {30.0, 60.0, 90.0};
+float dustLevel[3] = {20.0, 40.0, 80.0};
 void air_controller() {
   if (isOn) {
     if (fanMode == 0) {
@@ -8,7 +8,7 @@ void air_controller() {
         fanLevel = 1;
       } else if (dustValue < dustLevel[1]) {
         fanLevel = 2;
-      } else if (dustValue < dustLevel[2]) {
+      } else{
         fanLevel = 3;
       }
     }

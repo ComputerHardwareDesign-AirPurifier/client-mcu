@@ -1,5 +1,5 @@
-int measurePin = A5;
-int ledPower = 11;
+int measurePin = 35;
+int ledPower = 21;
 
 unsigned int samplingTime = 280;
 unsigned int deltaTime = 40;
@@ -44,17 +44,18 @@ int average_16(int x)
 
 
 void cal_dust_density() {
-  float Vo = voMeasured * (5.0 / 1024);
-  if (Vo > 3.5) {
-    Vo = 3.5;
+  
+  float Vo = voMeasured * (3.3 / 4095);
+  if (Vo > 3.3){
+    Vo = 3.3;
   }
 
-  //  float dV = Vo - Voc;
-  //  if (dV < 0) {
-  //    dV = 0;
-  //    Voc = Vo;
-  //  }
-  //  dustValue = ((dV) / K) * 100;
+//    float dV = Vo - Voc;
+//    if (dV < 0) {
+//      dV = 0;
+//      Voc = Vo;
+//    }
+//    dustValue = ((dV) / K) * 100;
 
   dustValue = 170 * Vo - 100;
 
@@ -62,30 +63,31 @@ void cal_dust_density() {
   {
     dustValue = 999;
   }
-  else if (dustValue < 0)
+  else if (dustValue < 1)
   {
-    dustValue = 0;
+    dustValue = 1;
   }
 
 
 
-  Serial.println("Raw Signal Value (0-1023):");
-  Serial.println(voMeasured);
-
-  Serial.println("Voltage:");
-  Serial.println(Vo);
-
-  Serial.println("Dust Density:");
-  Serial.println(dustValue);
+//  Serial.print("Raw Signal Value (0-4095): ");
+//  Serial.println(voMeasured);
+//
+//  Serial.print("Voltage: ");
+//  Serial.println(Vo);
+//
+//  Serial.print("Dust Density: ");
+//  Serial.println(dustValue);
 
 }
 
 void read_dust_sensor()
 {
-  if (micros() - sleepTimeMicros > sleepTime) {
+  
     digitalWrite(ledPower, LOW);
     delayMicroseconds(samplingTime);
     int analog_input = average_16(analogRead(measurePin));
+    //Serial.println(analog_input);
     float std_value = standard_deviation(analog_input);
     //
     //  Serial.println("Standard Deviation:");
@@ -98,9 +100,8 @@ void read_dust_sensor()
     cal_dust_density();
     delayMicroseconds(deltaTime);
     digitalWrite(ledPower, HIGH);
-    sleepTimeMicros = micros();
+    delayMicroseconds(sleepTime);
 
-  }
 
 }
 
